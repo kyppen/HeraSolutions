@@ -16,8 +16,9 @@ public class RuteService {
 
     private final RuteRepo ruteRepo;
 
-    public Rute createRute(RuteDTO ruteDTO) {
-        Rute rute = new Rute(ruteDTO);
+    public Rute createRute(String ruteName) {
+        Rute rute = new Rute();
+        rute.setRuteName(ruteName);
         return ruteRepo.save(rute);
     }
 

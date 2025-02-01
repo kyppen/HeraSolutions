@@ -18,21 +18,26 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 public class RuteController {
     private final RuteService ruteService;
     private final OrderService orderService;
-    @PostMapping("/rute")
-    public ResponseEntity<Rute> createRute(@RequestBody RuteDTO ruteDTO) {
-        Rute createdRute = ruteService.createRute(ruteDTO);
+    @PostMapping("/rute/{ruteName}")
+    public ResponseEntity<Rute> createRute(@PathVariable String ruteName) {
+        log.info("WTF");
+        Rute createdRute = ruteService.createRute(ruteName);
         return new ResponseEntity<>(createdRute, HttpStatus.CREATED);
     }
-    @GetMapping("/all")
+
+    @GetMapping("/rutes")
     public ResponseEntity<List<Rute>> allRutes(){
         return new ResponseEntity<>(ruteService.allRute(), HttpStatus.OK);
     }
     @GetMapping("/{ruteId}/orders")
     public ResponseEntity<List<Order>> getOrdersForRute(@PathVariable Long ruteId) {
+        log.info("getOrdersForRute");
         List<Order> orders = orderService.getOrdersForRute(ruteId);
+        log.info("getOrdersForRute amount of orders {}", orders.size());
         return ResponseEntity.ok(orders);
     }
  }

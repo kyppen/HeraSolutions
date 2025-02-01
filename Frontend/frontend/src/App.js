@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import SubmitComponent  from "./InputSubmitComponent";
+import InputSubmitComponent from "./InputSubmitComponent";
+import RuteList from "./RuteList";
 
 
 
@@ -38,23 +39,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h3>Hera solutions order system</h3>
-              <button onClick={createRute}>Create Rute</button>
+          <InputSubmitComponent/>
+          <RuteList/>
               <div className="flex items-center space-x-2 p-4">
-                  <Input
-                      type="text"
-                      value={ruteName}
-                      onChange={(e) => setRuteName(e.target.value)}
-                      placeholder="Enter something..."
-                      className="p-2 border rounded-md"
-                  />
-                  <Button onClick={createRute} className="bg-blue-500 text-white px-4 py-2 rounded-md">
-                      Submit
-                  </Button>
-
+                  <p>Route</p>
               </div>
       </header>
     </div>
 );
 }
-
+//<DragDropList />
 export default App;
