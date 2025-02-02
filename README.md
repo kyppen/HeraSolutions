@@ -17,7 +17,7 @@ mvn spring-boot:run
 
 Docker:
 * docker build -t backend_solution .
-* docker run -p 8080:8080 --name hera_solutions backendSolution
+* docker run -p 8080:8080 --name hera_solutions backend_solution
 * docker start hera_solutions
 
 frontend:  
