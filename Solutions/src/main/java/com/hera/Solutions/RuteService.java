@@ -26,11 +26,4 @@ public class RuteService {
         return ruteRepo.findAll();
     }
 
-    public Rute getRuteById(Long RuteId) {
-        if (ruteRepo.existsById(RuteId)) {
-            return ruteRepo.findById(RuteId).orElseThrow();
-        }else{
-            return null;
-        }
-    }
 }

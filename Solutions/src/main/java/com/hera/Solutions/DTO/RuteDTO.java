@@ -10,5 +10,4 @@ import java.util.List;
 @Setter
 public class RuteDTO {
     private String ruteName;
-    private List<Order> OrderList;
 }

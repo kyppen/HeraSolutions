@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-function InputSubmitComponent() {
+function CreateRute() {
     const [inputValue, setInputValue] = useState("");
     const [error, setError] = useState("");
 
     const handleSubmit = async(e) => {
-        //alert(`Submitted: ${inputValue}`);
         e.preventDefault()
         const createdRute = {
             id:'',
@@ -13,7 +12,7 @@ function InputSubmitComponent() {
         };
 
         try{
-            console.log("Add to campaign");
+            console.log("Creating Rute...");
             const response = await fetch('http://localhost:8080/api/rute/' + inputValue, {
                 method: 'POST',
                 headers: {
@@ -22,7 +21,7 @@ function InputSubmitComponent() {
                 body: JSON.stringify(createdRute)
             });
             if(!response.ok){
-                throw new Error('Failed to create rut ')
+                throw new Error('Failed to create rute ')
             }
             setInputValue("");
 
@@ -30,6 +29,7 @@ function InputSubmitComponent() {
             setError(err instanceof Error ? err.message: 'An unknown error occured');
             console.error("Error adding to rute", err);
         }
+        window.location.reload();
     };
 
     return (
@@ -47,4 +47,4 @@ function InputSubmitComponent() {
         </div>
     );
 }
-export default InputSubmitComponent;
+export default CreateRute;

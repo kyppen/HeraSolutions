@@ -25,7 +25,7 @@ public class RuteController {
     private final OrderService orderService;
     @PostMapping("/rute/{ruteName}")
     public ResponseEntity<Rute> createRute(@PathVariable String ruteName) {
-        log.info("WTF");
+        log.info("Rute created");
         Rute createdRute = ruteService.createRute(ruteName);
         return new ResponseEntity<>(createdRute, HttpStatus.CREATED);
     }
@@ -52,5 +52,18 @@ public class RuteController {
         log.info("Updating orders {}" , orderDTO.toString());
         orderService.updateOrder(orderDTO);
         return new ResponseEntity<>(orderDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/sortbydelivery/{ruteId}")
+    public ResponseEntity<List<Order>> sortByDelivery(@PathVariable Long ruteId){
+        log.info("Sort delivery {}", ruteId);
+        orderService.sortedOrdersByDeliveryDate(ruteId);
+        return new ResponseEntity<>(orderService.sortedOrdersByDeliveryDate(ruteId), HttpStatus.OK);
+    }
+    @GetMapping("/sortbypickup/{ruteId}")
+    public ResponseEntity<List<Order>> sortByPickup(@PathVariable Long ruteId){
+        log.info("Sort pickup {}", ruteId);
+        orderService.sortedOrdersByPickupDate(ruteId);
+        return new ResponseEntity<>(orderService.sortedOrdersByPickupDate(ruteId), HttpStatus.OK);
     }
  }

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -35,4 +36,23 @@ public class OrderService {
         log.info("REPO: Order has been updated");
         return orderRepo.save(currentOrder);
     }
+    public List<Order> sortedOrdersByDeliveryDate(Long ruteId){
+        List<Order> ruteOrders = orderRepo.findByRuteId(ruteId);
+        log.info("Orders Count: {}", ruteOrders.size());
+        ruteOrders.sort(Comparator.comparing(Order:: getDeliveryTime));
+        for(int i = 0; i < ruteOrders.size(); i++){
+            ruteOrders.get(i).setIndex(i);
+        }
+        return ruteOrders;
+    }
+    public List<Order> sortedOrdersByPickupDate(Long ruteId){
+        List<Order> ruteOrders = orderRepo.findByRuteId(ruteId);
+        log.info("Orders Count: {}", ruteOrders.size());
+        ruteOrders.sort(Comparator.comparing(Order:: getPickupTime));
+        for(int i = 0; i < ruteOrders.size(); i++){
+            ruteOrders.get(i).setIndex(i);
+        }
+        return ruteOrders;
+    }
+
 }
