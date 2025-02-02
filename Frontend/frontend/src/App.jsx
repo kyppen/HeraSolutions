@@ -42,7 +42,6 @@ function App() {
           <InputSubmitComponent/>
           <RuteList/>
               <div className="flex items-center space-x-2 p-4">
-                  <p>Route</p>
               </div>
       </header>
     </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import addOrder from "./addOrder";
 
 const DragDropList = ({ items }) => {
     const [listItems, setListItems] = useState([]);
@@ -101,10 +102,11 @@ export default function RuteList() {
             {selectedRute && (
                 <div style={{ marginTop: "20px", padding: "10px", border: "1px solid #ccc", width: "100%" }}>
                     <h2>Route Details</h2>
-                    <p><strong>ID:</strong> {selectedRute.Id}</p>
+                    <p><strong>ID:</strong> {selectedRute.id}</p>
                     <p><strong>Name:</strong> {selectedRute.ruteName}</p>
-                    <p><strong>Description:</strong> {selectedRute.description || "No description available."}</p>
                     <button onClick={() => setSelectedRute(null)}>Close</button>
+                    <button> Create New Order maybe?</button>
+                    <addOrder/>
                     {loadingOrders ? <p>Loading orders...</p> : <DragDropList items={orders} />}
                 </div>
             )}

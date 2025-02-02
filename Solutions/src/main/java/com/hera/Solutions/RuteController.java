@@ -7,6 +7,7 @@ import com.hera.Solutions.Entity.Order;
 import com.hera.Solutions.Entity.Rute;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
@@ -39,5 +40,17 @@ public class RuteController {
         List<Order> orders = orderService.getOrdersForRute(ruteId);
         log.info("getOrdersForRute amount of orders {}", orders.size());
         return ResponseEntity.ok(orders);
+    }
+    @PostMapping("/add-order")
+    public ResponseEntity<OrderDTO> addOrderToRute( @RequestBody OrderDTO orderDTO){
+        log.info("addOrderToRute Called RequestBody: {}", orderDTO);
+        orderService.createOrder(orderDTO);
+        return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
+    }
+    @PutMapping("/update-order")
+    public ResponseEntity<OrderDTO> updateOrder(@RequestBody OrderDTO orderDTO){
+        log.info("Updating orders {}" , orderDTO.toString());
+        orderService.updateOrder(orderDTO);
+        return new ResponseEntity<>(orderDTO, HttpStatus.OK);
     }
  }

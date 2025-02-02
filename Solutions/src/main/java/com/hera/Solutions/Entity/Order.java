@@ -23,6 +23,7 @@ public class Order {
     private String deliveryTime;
     private int packageCount;
     private Long ruteId;
+    private int index;
 
     public Order(OrderDTO orderDTO){
         this.transportFirm = orderDTO.getTransportFirm();
@@ -31,5 +32,6 @@ public class Order {
         this.receiver = orderDTO.getReceiver();
         this.sender = orderDTO.getSender();
         this.ruteId = orderDTO.getRuteId();
+        this.index = orderDTO.getIndex();
     }
 }
