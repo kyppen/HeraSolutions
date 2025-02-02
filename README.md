@@ -3,7 +3,7 @@
 
 backend is implemented with Springboot running Amazon Corretto 17  
 Frontend is react with a good mix of TSX and JSX (This is due to limited time)  
-Database of choice is H2 which stores in file data file.  
+Database of choice is H2 which stores in a data file.  
 
 
 
